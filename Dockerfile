@@ -4,7 +4,7 @@ FROM alpine:latest
 ENV USER=alpine
 
 # Install packages
-RUN apk add --update cargo
+RUN apk add --update cargo sudo && \
 rm -rf /var/lib/apt/lists/* && \
 rm /var/cache/apk/*
 
@@ -27,4 +27,4 @@ WORKDIR /home/$USER
 RUN cargo install aichat --locked 
 
 # run the applicationn
-CMD ["/home/$USER/.cargo/bin/aichat"]
+CMD ["/home/alpine/.cargo/bin/aichat"]
