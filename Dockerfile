@@ -7,7 +7,9 @@ ENV USER=alpine
 RUN apk add --update curl gcc sudo && \
 rm -rf /var/lib/apt/lists/* && \
 rm /var/cache/apk/*
-RUN curl –proto ‘=https’ –tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+RUN curl –proto ‘=https’ –tlsv1.2 -sSf https://sh.rustup.rs | ash
+
 RUN adduser \
     --disabled-password \
     --gecos "" \
