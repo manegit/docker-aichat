@@ -4,11 +4,11 @@ FROM alpine:latest
 ENV USER=alpine
 
 # Install packages
-RUN apk add --update curl gcc sudo && \
+RUN apk add --update curl gcc sudo bash && \
 rm -rf /var/lib/apt/lists/* && \
 rm /var/cache/apk/*
 
-RUN curl –proto ‘=https’ –tlsv1.2 -sSf https://sh.rustup.rs | ash
+RUN curl –proto ‘=https’ –tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 RUN adduser \
     --disabled-password \
