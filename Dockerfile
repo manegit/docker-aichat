@@ -4,10 +4,10 @@ FROM alpine:latest
 ENV USER=alpine
 
 # Install packages
-RUN apk add --update cargo sudo && \
+RUN apk add --update curl gcc sudo && \
 rm -rf /var/lib/apt/lists/* && \
 rm /var/cache/apk/*
-
+RUN curl –proto ‘=https’ –tlsv1.2 -sSf https://sh.rustup.rs | sh
 RUN adduser \
     --disabled-password \
     --gecos "" \
@@ -24,6 +24,7 @@ RUN echo "$USER:$USER" | chpasswd && echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.
 USER $USER
 WORKDIR /home/$USER
 
+RUN source /home/alpine/.cargo/env
 RUN cargo install aichat --locked 
 
 # run the applicationn
